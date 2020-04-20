@@ -8,9 +8,18 @@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
+            <select class="rounded-lg" @bind="@SelectedYear">
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+            </select>
+        </li>
+        <li class="nav-item px-3">
+            <CascadingValue Value="@SelectedYear">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </CascadingValue>
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="counter">
@@ -36,6 +45,7 @@
 
 @code {
     private bool collapseNavMenu = true;
+    public string SelectedYear = "2018";
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
